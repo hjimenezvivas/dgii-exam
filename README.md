@@ -1,2 +1,3 @@
-# dgii-exam
-Repositorio examen Puesto Ing Sistemas
+# Hello World Docker App
+
+Esta aplicación muestra 'Hola Mundo' usando Flask y Docker.
