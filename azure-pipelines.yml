@@ -17,7 +17,7 @@ steps:
     pip install -r requirements.txt
   displayName: 'Install dependencies'
   docker run -d -p 5000:5000 my-image
-  displayName: "Run Docker Container
+  displayName: 'Run Docker Container'
 
 - task: Docker@2
   inputs:
