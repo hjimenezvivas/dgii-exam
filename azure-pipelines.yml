@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  name: 'dgiiexam'
+  name: 'dgiiexam'  # Este es un agente self-hosted
 
 variables:
   imageName: 'hello-world-image'
@@ -16,13 +16,18 @@ steps:
     python -m pip install --upgrade pip
     pip install -r requirements.txt
   displayName: 'Install dependencies'
-  docker run -d -p 5000:5000 dgiiexam
 
+# Crea la imagen de Docker
 - task: Docker@2
   inputs:
-    containerRegistry: 'dgiiexam'
+    containerRegistry: 'dgiiexam'         # Asegúrate de que esté bien definido como service connection
     repository: 'hello-world'
     command: 'buildAndPush'
     Dockerfile: 'Dockerfile'
     tags: |
       latest
+
+# Ejecuta la imagen recién creada
+- script: |
+    docker run -d -p 5000:5000 hello-world:latest
+  displayName: "Run Docker Container"
