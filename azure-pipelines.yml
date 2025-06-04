@@ -29,5 +29,5 @@ steps:
 
 # Ejecuta la imagen recién creada
 - script: |
-    docker run -d -p 5000:5000 hello-world:latest
+    docker run -d -p 5000:5000 hello-world-image
   displayName: "Run Docker Container"
