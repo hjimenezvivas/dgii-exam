@@ -1,20 +1,11 @@
 FROM python:3.10-slim
 
-# Evita errores por certificados SSL
-ENV PYTHONUNBUFFERED=1 \
-    PIP_NO_CACHE_DIR=1 \
-    PIP_DISABLE_PIP_VERSION_CHECK=1 \
-    PIP_DEFAULT_TIMEOUT=100
-
-# Instala dependencias básicas para compilar paquetes
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    gcc \
-    libssl-dev \
-    ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
-
 WORKDIR /app
+
+# Instala certificados necesarios para conexiones HTTPS
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
 
