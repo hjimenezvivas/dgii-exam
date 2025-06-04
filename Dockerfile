@@ -14,4 +14,6 @@ RUN pip install --upgrade pip --trusted-host pypi.org --trusted-host files.pytho
 
 COPY app/ ./app/
 
+EXPOSE 5000
+
 CMD ["python", "app/main.py"]
