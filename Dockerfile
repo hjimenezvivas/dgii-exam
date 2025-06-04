@@ -1,4 +1,4 @@
-FROM python:3.12
+FROM python:3.10-slim
 
 WORKDIR /app
 
@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY requirements.txt .
 
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN pip install --upgrade pip --trusted-host pypi.org --trusted-host files.pythonhosted.org \
+    && pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt
 
 COPY app/ ./app/
 
