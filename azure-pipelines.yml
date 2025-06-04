@@ -2,7 +2,8 @@ trigger:
 - main
 
 pool:
-  name: 'dgiiexam'  # Este es un agente self-hosted. No logre ponerlo a funcionar con Azure. No tiene habil la opcion de paralelismo entre servicios.
+  vmImage: 'ubuntu-latest'
+  #name: 'dgiiexam'  # Este es un agente self-hosted. No logre ponerlo a funcionar con Azure. No tiene habil la opcion de paralelismo entre servicios.
 
 variables:
   imageName: 'hello-world-image'
@@ -20,7 +21,7 @@ steps:
 # Crea la imagen de Docker
 - task: Docker@2
   inputs:
-    containerRegistry: 'dgiiexam'
+    containerRegistry: 'azdgiiexam'
     repository: 'hello-world'
     command: 'buildAndPush'
     Dockerfile: 'Dockerfile'
