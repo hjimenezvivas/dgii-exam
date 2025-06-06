@@ -2,26 +2,26 @@ trigger:
 - main
 
 pool:
-  vmImage: 'ubuntu-latest'
-  #name: 'dgiiexam'  # Este es un agente self-hosted. No logre ponerlo a funcionar con Azure. No tiene habil la opcion de paralelismo entre servicios.
+  #vmImage: 'ubuntu-latest'
+  name: 'dgiiexam'  # Este es un agente self-hosted. No logre ponerlo a funcionar con Azure. No tiene habil la opcion de paralelismo entre servicios.
 
 variables:
-  imageName: 'hello-world-image'
+  imageName: 'hello-world-image' #imagen de docker que imprimira Hola Mundo
 
 steps:
-- task: UsePythonVersion@0
+- task: UsePythonVersion@0 #que aplicativo imprimira el mensaje, para este caso Python
   inputs:
     versionSpec: '3.x'
 
-- script: |
-    python -m pip install --upgrade pip
+- script: | #script para instalar python
+    python -m pip install --upgrade pip 
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
-# Crea la imagen de Docker
-- task: Docker@2
+
+- task: Docker@2 # Crea la imagen de Docker
   inputs:
-    containerRegistry: 'azdgiiexam'
+    containerRegistry: 'dgiiexam'
     repository: 'hello-world'
     command: 'buildAndPush'
     Dockerfile: 'Dockerfile'
