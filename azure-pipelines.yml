@@ -5,7 +5,7 @@ pool:
   name: 'dgiiexam'  # Este es un agente self-hosted. No logre ponerlo a funcionar con Azure. No tiene habil la opcion de paralelismo entre servicios.
 
 variables:
-  imageName: 'hello-world-image' #imagen de docker que imprimira Hola Mundo
+  imageName: 'hello-world-image' 
 
 #que aplicativo imprimira el mensaje, para este caso Python
 steps:
